@@ -11,7 +11,6 @@ end
 get '/projects',:provides=>:json do
   puts request.env["CONTENT_TYPE"]
   body = getProjects()
-  #object = JSON.parse(body)
   puts body  
   status 200
   return body
