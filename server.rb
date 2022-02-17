@@ -41,8 +41,8 @@ post '/project/create', :provides=>:json do
   puts  object["projectName"]
   puts  object["projectType"]
   puts  object["clientApp"]
-  createProject(body)
+  response = createProject(body)
   status 200
-  return object.to_json()
+  return response
 end
 
