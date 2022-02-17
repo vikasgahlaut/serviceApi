@@ -43,6 +43,6 @@ post '/project/create', :provides=>:json do
   puts  object["clientApp"]
   createProject(body)
   status 200
-  return 'Project Created on CMS with project id: ' + object["projectId"] + ', project name: '  + object["projectName"] + ', Project type: ' + object["projectType"]  + ' for client App: ' + object["clientApp"] 
+  return object.to_json()
 end
 
