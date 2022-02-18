@@ -1,3 +1,3 @@
 require_relative '../createProject.rb'
-createProject('{"productionId" : "001", "name" : "Vikas001"}')
+createProject('{"projectName" : "Vikas001", "projectType": "local", "clientApp": "PPro"}')
 

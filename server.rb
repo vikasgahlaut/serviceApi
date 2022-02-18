@@ -15,6 +15,8 @@ get '/projects',:provides=>:json do
   status 200
   return body
 end 
+
+
 get '/medias' do
   status 300
   return ' List of all medias!'
