@@ -31,6 +31,7 @@ delete '/project/:id',:provides=>:json do
   searchId = param[3,param.length]
   response = deleteProject(searchId)
   status 204
+  puts response
   return response
 end
 

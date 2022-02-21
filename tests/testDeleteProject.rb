@@ -1,3 +1,4 @@
-require_relative '../getProject.rb'
+require_relative '../deleteProject.rb'
 id = ARGV[0]
-getProject(id)
+res = deleteProject(id)
+puts res
