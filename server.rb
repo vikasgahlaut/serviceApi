@@ -4,6 +4,7 @@ require 'json'
 require_relative 'createProject.rb'
 require_relative 'getProject.rb'
 require_relative 'getProjects.rb'
+require_relative 'deleteProject.rb'
 get '/' do
   status 200
   return 'Welcome to cms!'
@@ -18,12 +19,19 @@ get '/projects',:provides=>:json do
 end 
 
 get '/project/:id',:provides=>:json do
-  #project = getProject(params[:id])
   param = params[:id]
   searchId = param[3,param.length]
   project = getProject(searchId)
   status 200
   return project
+end
+
+delete '/project/:id',:provides=>:json do
+  param = params[:id]
+  searchId = param[3,param.length]
+  response = deleteProject(searchId)
+  status 204
+  return response
 end
 
 
