@@ -3,6 +3,7 @@ require 'sinatra'
 require 'json'
 require_relative 'createProject.rb'
 require_relative 'getProject.rb'
+require_relative 'getProjects.rb'
 get '/' do
   status 200
   return 'Welcome to cms!'

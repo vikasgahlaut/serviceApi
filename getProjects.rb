@@ -6,6 +6,7 @@ def getProjects
   client.query("select * from cmsDB.PROJECTS") .each do |row|
     projects.push(row)
   end
+  puts projects
   return projects.to_json() 
 end
 
