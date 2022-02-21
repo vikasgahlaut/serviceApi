@@ -2,7 +2,7 @@
 require 'sinatra'
 require 'json'
 require_relative 'createProject.rb'
-require_relative 'getProjects.rb'
+require_relative 'getProject.rb'
 get '/' do
   status 200
   return 'Welcome to cms!'
@@ -16,21 +16,33 @@ get '/projects',:provides=>:json do
   return body
 end 
 
+get '/project/:id',:provides=>:json do
+  #project = getProject(params[:id])
+  param = params[:id]
+  searchId = param[3,param.length]
+  project = getProject(searchId)
+  status 200
+  return project
+end
+
 
 get '/medias' do
   status 300
   return ' List of all medias!'
 end
+
 get '/medias/:id' do
   status 400
   body 'Return media coressponding to id' + params[:id]  
 end
+
 post '/medias', :provides=>:json do
   puts request.env["CONTENT_TYPE"]
   puts request.body.read 
   status 300
   return 'Create a media!'
 end
+
 post '/project/create', :provides=>:json do
   puts request.env["CONTENT_TYPE"]
   puts request.env["AUTHORIZATION"]
