@@ -1,10 +1,8 @@
 # server.rb
 require 'sinatra'
 require 'json'
-require_relative 'createProject.rb'
-require_relative 'getProject.rb'
-require_relative 'getProjects.rb'
-require_relative 'deleteProject.rb'
+require_relative '../controller/projectController.rb'
+
 get '/' do
   status 200
   return 'Welcome to cms!'
