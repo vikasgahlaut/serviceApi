@@ -2,9 +2,10 @@ require 'mysql2'
 require 'json'
 require 'uuid'
 require 'logger'
+require_relative '../service/projectService.rb'
 
 # Create a Logger that prints to STDOUT
-$log = Logger.new(STDOUT)
+#$log = Logger.new(STDOUT)
 
 def createProject(body)
   jsonBody = JSON.parse(body) 

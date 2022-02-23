@@ -5,7 +5,8 @@ require 'logger'
 require_relative '../controller/projectController.rb'
 
 # Create a $logger that prints to STDOUT
-$log = Logger.new(STDOUT)
+#$log = Logger.new(STDOUT)
+$log = Logger.new('../logs/' + 'Log' + Time.now.getutc.to_s+'.txt')
 
 get '/' do
   status 200
