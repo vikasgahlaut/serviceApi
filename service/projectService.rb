@@ -52,10 +52,9 @@ end
 
 post '/project/create', :provides=>:json do
   body = request.body.read
-  $log.info('Body content:' + body)
   object = JSON.parse(body)
   response = createProject(body)
-  status 200
+  status 201
   $log.info('Response: ' + response)
   $logs.info('Response: ' + response)
   return response

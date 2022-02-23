@@ -8,16 +8,22 @@ def createProject(body)
   jsonBody = JSON.parse(body) 
   client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
   id = UUID.new.generate
-  insertQuery = "INSERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
-  client.query(insertQuery)
-  $log.info('Query Executed: ' + insertQuery)
-  $logs.info('Query Executed: ' + insertQuery)
-
-  testHash = {
+  insertQuery = "ISERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
+  begin
+    client.query(insertQuery)
+    $log.info('Query Executed: ' + insertQuery)
+    $logs.info('Query Executed: ' + insertQuery)
+    testHash = {
     :id => id,
     :name => "#{jsonBody['projectName']}"
-  }
-  return testHash.to_json()
+    }
+    response =  testHash.to_json()
+  rescue Exception => e
+    $log.error('Something wrong with query execution')
+    $logs.error('Something wrong with query execution')
+    response = 'Something wrong with query execution'
+  end
+return response
 end
 
 def getProjects
