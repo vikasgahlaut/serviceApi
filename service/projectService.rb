@@ -4,7 +4,6 @@ require 'json'
 require 'logger'
 require_relative '../controller/projectController.rb'
 
-
 # Create a Logger that prints to STDOUT
 log = Logger.new(STDOUT)
 
