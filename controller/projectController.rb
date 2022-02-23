@@ -11,7 +11,6 @@ def createProject(body)
   client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
   id = UUID.new.generate
   insertQuery = "INSERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
-  log.info(insertQuery)
   client.query(insertQuery)
   
   testHash = {
