@@ -1,7 +1,12 @@
 # server.rb
 require 'sinatra'
 require 'json'
+require 'logger'
 require_relative '../controller/projectController.rb'
+
+
+# Create a Logger that prints to STDOUT
+log = Logger.new(STDOUT)
 
 get '/' do
   status 200
@@ -11,7 +16,7 @@ end
 get '/projects',:provides=>:json do
   puts request.env["CONTENT_TYPE"]
   body = getProjects()
-  puts body  
+  log.info(body)  
   status 200
   return body
 end 
@@ -29,21 +34,21 @@ delete '/project/:id',:provides=>:json do
   searchId = param[3,param.length]
   response = deleteProject(searchId)
   status 204
-  puts response
+  log.info(response)
   return response
 end
 
 post '/project/create', :provides=>:json do
-  puts request.env["CONTENT_TYPE"]
-  puts request.env["AUTHORIZATION"]
+  log.info(request.env["CONTENT_TYPE"])
+  log.info(request.env["AUTHORIZATION"])
   #puts request.body.read
   body = request.body.read
-  puts body
+  log.info(body)
   object = JSON.parse(body)
-  puts  object["projectId"]
-  puts  object["projectName"]
-  puts  object["projectType"]
-  puts  object["clientApp"]
+  log.info(object["projectId"])
+  log.info(object["projectName"])
+  log.info(object["projectType"])
+  log.info(object["clientApp"])
   response = createProject(body)
   status 200
   return response
