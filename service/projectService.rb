@@ -7,7 +7,6 @@ require_relative '../controller/projectController.rb'
 # Create a $logger that prints to STDOUT
 #$log = Logger.new(STDOUT)
 $log = Logger.new('../logs/' + 'Log' + Time.now.getutc.to_s+'.log')
-$logs = Logger.new(STDOUT)
 
 get '/' do
   status 200
@@ -31,7 +30,6 @@ get '/project/:id',:provides=>:json do
   response = getProject(searchId)
   status 200
   $log.info('Response: ' + response) 
-  $logs.info('Response: ' + response)
   return response
 end
 
@@ -41,7 +39,6 @@ delete '/project/:id',:provides=>:json do
   response = deleteProject(searchId)
   status 204
   $log.info('Response: ' + response)
-  $logs.info('Response: ' + response)
   return response
 end
 
@@ -52,7 +49,6 @@ post '/project/create', :provides=>:json do
   response = createProject(body)
   status 200
   $log.info('Response: ' + response)
-  $logs.info('Response: ' + response)
   return response
 end
 
