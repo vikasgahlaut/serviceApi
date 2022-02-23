@@ -29,7 +29,7 @@ get '/project/:id',:provides=>:json do
   response = getProject(searchId)
   status 200
   log.info('Response: ' + response) 
-  return project
+  return response
 end
 
 delete '/project/:id',:provides=>:json do
