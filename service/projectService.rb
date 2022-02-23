@@ -47,7 +47,7 @@ post '/project/create', :provides=>:json do
   object = JSON.parse(body)
   response = createProject(body)
   status 200
-  log.info('Response: ' + response)s
+  log.info('Response: ' + response)
   return response
 end
 
