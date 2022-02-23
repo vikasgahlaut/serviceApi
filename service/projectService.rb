@@ -1,7 +1,7 @@
 # server.rb
 require 'sinatra'
 require 'json'
-require '$logger'
+require 'logger'
 require_relative '../controller/projectController.rb'
 
 # Create a $logger that prints to STDOUT
