@@ -4,10 +4,10 @@ require 'uuid'
 require 'logger'
 
 # Create a Logger that prints to STDOUT
-log = Logger.new(STDOUT)
+@log = Logger.new(STDOUT)
 
 def createProject(body)
-  log.info(I am inside fucking createProject)
+  log.info(I am inside fucking createProjects)
   jsonBody = JSON.parse(body) 
   client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
   id = UUID.new.generate
