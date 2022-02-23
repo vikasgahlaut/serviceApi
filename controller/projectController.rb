@@ -11,6 +11,7 @@ def createProject(body)
   insertQuery = "INSERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
   client.query(insertQuery)
   $log.info('Query Executed: ' + insertQuery)
+  $logs.info('Query Executed: ' + insertQuery)
 
   testHash = {
     :id => id,
@@ -24,6 +25,7 @@ def getProjects
   projects = []
   getsQuery = "select * from cmsDB.PROJECTS"
   $log.info('Query Executed: ' + getsQuery)
+  $logs.info('Query Executed: ' + getsQuery)
   client.query(getsQuery) .each do |row|
     projects.push(row)
   end
@@ -34,6 +36,7 @@ def getProject(id)
   client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
   getQuery = "select * from cmsDB.PROJECTS WHERE projectId = '#{id}'"
   $log.info('Query Executed: ' + getQuery)
+  $logs.info('Query Executed: ' + getQuery)
   project = []
   client.query(getQuery) .each do |row|
     project.push(row)  
@@ -45,6 +48,7 @@ def deleteProject(id)
   client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
   deleteQuery = "DELETE FROM cmsDB.PROJECTS WHERE projectId = '#{id}'"
   $log.info('Query Executed: ' + deleteQuery)
+  $logs.info('Query Executed: ' + deleteQuery)
   client.query(deleteQuery)
   return 'Project Deleted Successfully' 
 end

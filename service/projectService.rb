@@ -6,17 +6,18 @@ require_relative '../controller/projectController.rb'
 require 'fileutils'
 
 #Create logs folder if it does not exists
-directory_name = '../logs/'
-Dir.mkdir(directory_name) unless File.exists?(directory_name)
+logFolder = '../logs/'
+Dir.mkdir(logFolder) unless File.exists?(logFolder)
 
-# Create a $logger that prints to STDOUT and another for log file
-$logs = Logger.new(STDOUT)
+# Create a loggers that prints to stdout and log file
 $log = Logger.new('../logs/' + 'Log' + Time.now.getutc.to_s+'.log')
+$logs = Logger.new(STDOUT)
 
 get '/' do
   status 200
   response = 'Welcome to cms!'
   $log.info('Response: ' + response)
+  $logs.info('Response: ' + response)
   return response
 end
 
@@ -35,6 +36,7 @@ get '/project/:id',:provides=>:json do
   response = getProject(searchId)
   status 200
   $log.info('Response: ' + response) 
+  $logs.info('Response: ' + response)
   return response
 end
 
@@ -44,6 +46,7 @@ delete '/project/:id',:provides=>:json do
   response = deleteProject(searchId)
   status 204
   $log.info('Response: ' + response)
+  $logs.info('Response: ' + response)
   return response
 end
 
@@ -54,6 +57,7 @@ post '/project/create', :provides=>:json do
   response = createProject(body)
   status 200
   $log.info('Response: ' + response)
+  $logs.info('Response: ' + response)
   return response
 end
 
