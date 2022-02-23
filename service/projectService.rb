@@ -12,7 +12,6 @@ get '/' do
   status 200
   response = 'Welcome to cms!'
   $log.info('Response: ' + response)
-  $logs.info('Response: ' + response)
   return response
 end
 
