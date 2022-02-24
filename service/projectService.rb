@@ -58,6 +58,7 @@ post '/project/create', :provides=>:json do
     status 504
   else
     status 201
+  end  
   $log.info('Response: ' + response)
   $logs.info('Response: ' + response)
   return response
