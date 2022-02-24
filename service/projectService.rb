@@ -54,7 +54,10 @@ post '/project/create', :provides=>:json do
   body = request.body.read
   object = JSON.parse(body)
   response = createProject(body)
-  status 201
+  if response == 'Something wrong with query execution'
+    status 504
+  else
+    status 201
   $log.info('Response: ' + response)
   $logs.info('Response: ' + response)
   return response
