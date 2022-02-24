@@ -55,7 +55,7 @@ post '/project/create', :provides=>:json do
   object = JSON.parse(body)
   response = createProject(body)
   if response == 'Something wrong with query execution'
-    status 504
+    status 500
   else
     status 201
   end  
