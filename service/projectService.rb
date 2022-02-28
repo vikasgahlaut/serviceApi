@@ -11,7 +11,7 @@ Dir.mkdir(logFolder) unless File.exists?(logFolder)
 
 # Create a loggers that prints to stdout and log file
 $log = Logger.new('../logs/' + 'Log' + Time.now.getutc.to_s+'.log')
-#$logs = Logger.new(STDOUT)
+$logs = Logger.new(STDOUT)
 
 get '/' do
   status 200
