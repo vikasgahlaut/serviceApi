@@ -11,13 +11,13 @@ Dir.mkdir(logFolder) unless File.exists?(logFolder)
 
 # Create a loggers that prints to stdout and log file
 $log = Logger.new('../logs/' + 'Log' + Time.now.getutc.to_s+'.log')
-$logs = Logger.new(STDOUT)
+#$logs = Logger.new(STDOUT)
 
 get '/' do
   status 200
   response = 'Welcome to cms!'
   $log.info('Response: ' + response)
-  $logs.info('Response: ' + response)
+  #$logs.info('Response: ' + response)
   return response
 end
 
@@ -25,7 +25,7 @@ get '/projects',:provides=>:json do
   puts request.env["CONTENT_TYPE"]
   response = getProjects()
   $log.info('Response: ' + response)  
-  $logs.info('Response: ' + response)
+  #$logs.info('Response: ' + response)
   status 200
   return response
 end 
@@ -36,7 +36,7 @@ get '/project/:id',:provides=>:json do
   response = getProject(searchId)
   status 200
   $log.info('Response: ' + response) 
-  $logs.info('Response: ' + response)
+  #$logs.info('Response: ' + response)
   return response
 end
 
@@ -46,7 +46,7 @@ delete '/project/:id',:provides=>:json do
   response = deleteProject(searchId)
   status 204
   $log.info('Response: ' + response)
-  $logs.info('Response: ' + response)
+  #$logs.info('Response: ' + response)
   return response
 end
 
@@ -63,7 +63,7 @@ post '/project/create', :provides=>:json do
     status 201
   end  
   $log.info('Response: ' + response)
-  $logs.info('Response: ' + response)
+  #$logs.info('Response: ' + response)
   return response
 end
 
