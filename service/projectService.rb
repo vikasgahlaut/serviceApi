@@ -57,7 +57,7 @@ post '/project/create', :provides=>:json do
   if response == 'Unable to connect to database.'  
     status 500
   elsif response == 'Unable to execute query, Please check syntax.'
-    status 507  
+    status 503  
   else
     status 201
   end  
