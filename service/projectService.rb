@@ -67,8 +67,7 @@ post '/project/create', :provides=>:json do
     $log.info('Response: ' + response)
     $logs.info('Response: ' + response)
   rescue Exception => e
-    $log.error('Unable to parse JSON.')
-    response = 'Unable to parse JSON.'  
+    status 400  
   end  
 return response
 end
