@@ -5,10 +5,15 @@ require 'logger'
 require_relative '../service/projectService.rb'
 
 def createProject(body)
-  jsonBody = JSON.parse(body) 
-  client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
+  jsonBody = JSON.parse(body)
+  begin
+    client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
+  rescue Exception => e
+    $log.error('Unable to connect to database.')
+    response = 'Unable to connect to database.'
+  end
   id = UUID.new.generate
-  insertQuery = "ISERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
+  insertQuery = "INSERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
   begin
     client.query(insertQuery)
     $log.info('Query Executed: ' + insertQuery)
