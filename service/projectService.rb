@@ -52,24 +52,18 @@ end
 
 post '/project/create', :provides=>:json do
   body = request.body.read
-  begin
-    object = JSON.parse(body)
-    response = createProject(body)
-    if response == 'Unable to connect to database.'  
-      status 500
-    elsif response == 'Unable to execute query, Please check syntax.'
-      status 503 
-    elsif response == 'Unable to parse JSON.'
-      status 400    
-    else
-      status 201
-    end  
-    $log.info('Response: ' + response)
-    $logs.info('Response: ' + response)
-  rescue Exception => e
-    response = 'Unable to parse JSON.'
-    status 400  
+  response = createProject(body)
+  if response == 'Unable to connect to database.'  
+    status 500
+  elsif response == 'Unable to execute query, Please check syntax.'
+    status 503 
+  elsif response == 'Unable to parse JSON.'
+    status 400    
+  else
+    status 201
   end  
-return response
+  $log.info('Response: ' + response)
+  $logs.info('Response: ' + response)
+  return response
 end
 
