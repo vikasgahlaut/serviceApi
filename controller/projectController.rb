@@ -5,29 +5,34 @@ require 'logger'
 require_relative '../service/projectService.rb'
 
 def createProject(body)
-  jsonBody = JSON.parse(body)
   begin
-    client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
-    id = UUID.new.generate
-    insertQuery = "INSERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
-    begin  
-      client.query(insertQuery)
-      $log.info('Query Executed: ' + insertQuery)
-      $logs.info('Query Executed: ' + insertQuery)
-      testHash = {
-      :id => id,
-      :name => "#{jsonBody['projectName']}"
-      }
-      response =  testHash.to_json()
+    jsonBody = JSON.parse(body)
+    begin
+      client = Mysql2::Client.new(:host => "192.168.1.134", :port => "3306", :username => "db", :password => "Bajaj@3901")
+      id = UUID.new.generate
+      insertQuery = "INSERT INTO cmsDB.PROJECTS (`projectId`, `projectName`, `projectType`, `clientApp`) VALUES ('#{id}', '#{jsonBody['projectName']}', '#{jsonBody['projectType']}', '#{jsonBody['clientApp']}' );"
+      begin  
+        client.query(insertQuery)
+        $log.info('Query Executed: ' + insertQuery)
+        $logs.info('Query Executed: ' + insertQuery)
+        testHash = {
+        :id => id,
+        :name => "#{jsonBody['projectName']}"
+        }
+        response =  testHash.to_json()
+      rescue Exception => e
+        $log.error('Unable to execute query, Please check syntax.')
+        $logs.error('Unable to execute query, Please check syntax.')
+        response = 'Unable to execute query, Please check syntax.'
+      end  
     rescue Exception => e
-      $log.error('Unable to execute query, Please check syntax.')
-      $logs.error('Unable to execute query, Please check syntax.')
-      response = 'Unable to execute query, Please check syntax.'
-    end  
+      $log.error('Unable to connect to database.')
+      response = 'Unable to connect to database.'
+    end
   rescue Exception => e
-    $log.error('Unable to connect to database.')
-    response = 'Unable to connect to database.'
-  end
+    $log.error('Unable to parse JSON.')
+    response = 'Unable to parse JSON.' 
+  end  
 return response
 end
 
