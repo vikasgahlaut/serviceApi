@@ -54,10 +54,8 @@ post '/project/create', :provides=>:json do
   body = request.body.read
   object = JSON.parse(body)
   response = createProject(body)
-  if response == 'Unable to connect to database.' 
+  if response == 'Unable to connect to database.' || 'Something wrong with query execution' 
     status 500
-  else if response == 'Something wrong with query execution' 
-    status 501
   else
     status 201
   end  
