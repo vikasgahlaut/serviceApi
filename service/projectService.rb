@@ -56,7 +56,7 @@ post '/project/create', :provides=>:json do
   response = createProject(body)
   if response == 'Unable to connect to database.' 
     status 500
-  elseif response == 'Something wrong with query execution' 
+  else if response == 'Something wrong with query execution' 
     status 501
   else
     status 201
