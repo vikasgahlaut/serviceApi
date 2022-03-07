@@ -33,8 +33,12 @@ end
 get '/project/:id',:provides=>:json do
   param = params[:id]
   searchId = param[3,param.length]
-  response = getProject(searchId)
-  status 200
+  begin
+    response = getProject(searchId)
+    status 200
+  rescue Exception404 => e
+    status 404
+  end  
   $log.info('Response: ' + response) 
   #$logs.info('Response: ' + response)
   return response

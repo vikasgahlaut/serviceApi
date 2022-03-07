@@ -57,6 +57,9 @@ def getProject(id)
   client.query(getQuery) .each do |row|
     project.push(row)  
   end
+  if project = []
+    raise Exception404.new()
+  end
   return project.to_json() 
 end
 
