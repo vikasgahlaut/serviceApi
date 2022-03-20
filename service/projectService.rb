@@ -38,13 +38,16 @@ get '/project/:id',:provides=>:json do
   #$logs.info('Success response: ' + response);
   begin
     response = getProject(searchId)
-    $logs.info('Success response: ' + response);
-    status 200
+    #$logs.info('Success response: ' + response);
+    if response.length() == 0
+      status 404
+    else
+      status 200  
   rescue Exception404 => e
     status 404
   end  
-  #$log.info('Response: ' + response) 
-  #$logs.info('Response: ' + response)
+  $log.info('Response: ' + response) 
+  $logs.info('Response: ' + response)
   return response
 end
 
