@@ -5,15 +5,6 @@ require 'logger'
 require_relative '../service/projectService.rb'
 
 def createProject(body)
-  jsonBody = null;
-  begin
-    jsonBody = JSON.parse(body)
-
-  rescue Exception => e
-    raise 
-    
-  end  
-
   begin
     jsonBody = JSON.parse(body)
     begin
