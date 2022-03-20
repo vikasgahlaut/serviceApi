@@ -34,20 +34,7 @@ end
 get '/project/:id',:provides=>:json do
   param = params[:id]
   searchId = param[3,param.length]
-  #response = getProject(searchId)
-  #$logs.info('Success response: ' + response);
-  begin
-    response = getProject(searchId)
-
-    $logs.info('response length: ' + response.count);
-    if response.length() == 0
-      status 404
-    else
-      status 200
-    end    
-  rescue Exception404 => e
-    status 404
-  end  
+  response = getProject(searchId)
   $log.info('Response: ' + response) 
   $logs.info('Response: ' + response)
   return response
