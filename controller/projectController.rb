@@ -30,7 +30,7 @@ def createProject(body)
       $log.error('Unable to connect to database.')
       response = 'Unable to connect to database.'
     end
-  rescue Exception => e
+  rescue Exception400 => e
     $log.error('Unable to parse JSON.')
     response = 'Unable to parse JSON.' 
   end  
