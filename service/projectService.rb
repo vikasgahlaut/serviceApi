@@ -57,7 +57,7 @@ post '/project/create', :provides=>:json do
     status 500
   elsif response == 'Unable to execute query, Please check syntax.'
     status 503 
-  elsif response == 'Unable to parse JSON.'
+  elsif response == '400'
     status 400    
   else
     status 201

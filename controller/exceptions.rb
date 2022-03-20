@@ -10,5 +10,6 @@ end
 class Exception401 < Exception4XX
 end
 
-
+class Exception400 < Exception4XX
+end
 

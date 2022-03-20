@@ -3,6 +3,7 @@ require 'json'
 require 'uuid'
 require 'logger'
 require_relative '../service/projectService.rb'
+require_relative '../controller/exceptions.rb'
 
 def createProject(body)
   begin
@@ -29,9 +30,9 @@ def createProject(body)
       $log.error('Unable to connect to database.')
       response = 'Unable to connect to database.'
     end
-  rescue Exception => e
+  rescue Exception400 => e
     $log.error('Unable to parse JSON.')
-    response = 'Unable to parse JSON.' 
+    response = '400' 
   end  
 return response
 end
