@@ -39,7 +39,7 @@ get '/project/:id',:provides=>:json do
   begin
     response = getProject(searchId)
 
-    $logs.info('response length: ' + response.count.to_s);
+    $logs.info('response length: ' + response.count);
     if response.length() == 0
       status 404
     else
