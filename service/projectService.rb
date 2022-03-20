@@ -42,7 +42,8 @@ get '/project/:id',:provides=>:json do
     if response.length() == 0
       status 404
     else
-      status 200  
+      status 200
+    end    
   rescue Exception404 => e
     status 404
   end  
