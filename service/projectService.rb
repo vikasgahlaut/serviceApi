@@ -4,6 +4,7 @@ require 'json'
 require 'logger'
 require_relative '../controller/projectController.rb'
 require 'fileutils'
+require_relative '../controller/exceptions.rb'
 
 #Create logs folder if it does not exists
 logFolder = '../logs/'
@@ -11,7 +12,7 @@ Dir.mkdir(logFolder) unless File.exists?(logFolder)
 
 # Create a loggers that prints to stdout and log file
 $log = Logger.new('../logs/' + 'Log' + Time.now.getutc.to_s+'.log')
-#$logs = Logger.new(STDOUT)
+$logs = Logger.new(STDOUT)
 
 get '/' do
   status 200
@@ -33,13 +34,16 @@ end
 get '/project/:id',:provides=>:json do
   param = params[:id]
   searchId = param[3,param.length]
+  response = getProject(searchId)
+  $logs.info('Success response: ' + response);
   begin
-    response = getProject(searchId)
-    status 200
+    #response = getProject(searchId)
+    #$logs.info('Success response: ' + response);
+    #status 200
   rescue Exception404 => e
     status 404
   end  
-  $log.info('Response: ' + response) 
+  #$log.info('Response: ' + response) 
   #$logs.info('Response: ' + response)
   return response
 end
