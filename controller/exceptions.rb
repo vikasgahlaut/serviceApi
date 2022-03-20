@@ -11,5 +11,9 @@ class Exception401 < Exception4XX
 end
 
 class Exception400 < Exception4XX
+	def initialize(msg="My default message", thing="apple")
+    @thing = thing
+    super(msg)
+  end
 end
 
