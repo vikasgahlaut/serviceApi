@@ -34,12 +34,12 @@ end
 get '/project/:id',:provides=>:json do
   param = params[:id]
   searchId = param[3,param.length]
-  response = getProject(searchId)
-  $logs.info('Success response: ' + response);
+  #response = getProject(searchId)
+  #$logs.info('Success response: ' + response);
   begin
-    #response = getProject(searchId)
-    #$logs.info('Success response: ' + response);
-    #status 200
+    response = getProject(searchId)
+    $logs.info('Success response: ' + response);
+    status 200
   rescue Exception404 => e
     status 404
   end  
