@@ -49,7 +49,7 @@ get '/project/:id',:provides=>:json do
   end  
   $log.info('Response: ' + response) 
   $logs.info('Response: ' + response)
-  $logs.info('Success response length: ' + response.length());
+  $logs.info('Success response length: ' + response.length().to_s);
   return response
 end
 
