@@ -39,7 +39,6 @@ get '/project/:id',:provides=>:json do
   begin
     response = getProject(searchId)
     #$logs.info('Success response: ' + response);
-    $logs.info('Success response length: ' + response.length());
     if response.length() == 0
       status 404
     else
@@ -50,6 +49,7 @@ get '/project/:id',:provides=>:json do
   end  
   $log.info('Response: ' + response) 
   $logs.info('Response: ' + response)
+  $logs.info('Success response length: ' + response.length());
   return response
 end
 
